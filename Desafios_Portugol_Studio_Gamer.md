@@ -102,12 +102,3 @@ Peça uma senha numérica de 4 dígitos guardada em vetor. Verifique se todos os
 **Desafio 5.4 — Caça ao Creeper (adivinhação)**
 O jogo "esconde" um número de 1 a 50 (posição do Creeper numa fileira de blocos). O jogador tenta adivinhar e recebe dicas de "mais longe"/"mais perto" até acertar. Conte e mostre quantas tentativas foram necessárias.
 *Conceitos: `faca...enquanto`, `se/senaose`, acumulador de tentativas*
-
----
-
-## Orientações para o Professor
-
-- **Ordem:** siga os níveis em sequência; 2 a 3 desafios por nível já validam o aprendizado.
-- **Antes do computador:** exigir rascunho de fluxograma ou pseudocódigo a partir do Nível 3.
-- **Modo passo a passo do Portugol Studio:** use nos Níveis 3 e 4 para os alunos verem as variáveis mudando a cada iteração — equivalente digital do teste de mesa.
-- **Nível 5** funciona bem como avaliação prática de fechamento da Unidade 2.
