@@ -1,17 +1,8 @@
 # Manual de Tradução — Portugol Studio → Java
 ## Unidade 2 — Lógica de Programação e Representação de Algoritmos
-
-Este manual segue a mesma estrutura da Documentação de Portugol Studio, mostrando lado a lado como cada conceito é escrito em Java. O objetivo é o aluno perceber que a **lógica não muda** — só a sintaxe.
-
-> **Nota sobre tipos:** em Java existem os tipos primitivos (`int`, `double`, `boolean`, `char`) e as classes wrapper (`Integer`, `Double`, `Boolean`, `Character`). Para o dia a dia de quem está aprendendo lógica, o uso correto e mais comum é o tipo primitivo. As classes wrapper (`Integer`, `Double` etc.) existem para casos específicos — como guardar números em coleções (`ArrayList`) ou quando o valor pode ser nulo — e serão retomadas quando o curso chegar em Programação de Aplicativos / Coleções. Por isso, abaixo mostramos os dois: o equivalente direto pedido (wrapper) e o equivalente idiomático (primitivo), que é o recomendado para uso comum.
-
 ---
 
 ## 1. Estrutura básica de um programa
-
-| Portugol | Java |
-|---|---|
-| `programa { funcao inicio() { ... } }` | `public class NomeDoPrograma { public static void main(String[] args) { ... } }` |
 
 **Portugol:**
 ```
@@ -39,13 +30,13 @@ public class MeuPrograma {
 
 ## 2. Variáveis e tipos de dados
 
-| Portugol | Java (wrapper — tradução direta) | Java (primitivo — uso recomendado) |
-|---|---|---|
-| `inteiro` | `Integer` | `int` |
-| `real` | `Double` | `double` |
-| `cadeia` | `String` | `String` (não existe primitivo para texto) |
-| `caractere` | `Character` | `char` |
-| `logico` | `Boolean` | `boolean` |
+| Portugol | Java |
+|---|---|
+| `inteiro` | `Integer` |
+| `real` | `Double` |
+| `cadeia` | `String` |
+| `caractere` | `Character` |
+| `logico` | `Boolean` |
 
 **Portugol:**
 ```
@@ -60,25 +51,12 @@ nome = "Maria"
 aprovado = verdadeiro
 ```
 
-**Java (wrapper):**
+**Java:**
 ```java
 Integer idade;
 Double altura;
 String nome;
 Boolean aprovado;
-
-idade = 18;
-altura = 1.75;
-nome = "Maria";
-aprovado = true;
-```
-
-**Java (primitivo — recomendado):**
-```java
-int idade;
-double altura;
-String nome;
-boolean aprovado;
 
 idade = 18;
 altura = 1.75;
@@ -92,10 +70,10 @@ aprovado = true;
 
 | Portugol | Java |
 |---|---|
-| `const inteiro IDADE_MINIMA = 18` | `final int IDADE_MINIMA = 18;` |
+| `const inteiro IDADE_MINIMA = 18` | `final Integer IDADE_MINIMA = 18;` |
 
 ```java
-final int IDADE_MINIMA = 18;
+final Integer IDADE_MINIMA = 18;
 ```
 
 ---
@@ -135,23 +113,25 @@ public class Saudacao {
 > - `escreva` vira `System.out.print` (não pula linha) ou `System.out.println` (pula linha ao final).
 > - Java não junta valores com vírgula dentro do `print` como o Portugol — usa-se o operador `+` para concatenar texto.
 > - `leia` precisa de um objeto `Scanner`, criado uma vez no início do programa com `new Scanner(System.in)`.
-> - Cada tipo tem seu próprio método de leitura: `nextLine()` (texto), `nextInt()` (inteiro), `nextDouble()` (real), `nextBoolean()` (lógico).
+> - Cada tipo tem seu próprio método de leitura, que devolve automaticamente o wrapper correspondente: `nextLine()` → `String`, `nextInt()` → `Integer`, `nextDouble()` → `Double`, `nextBoolean()` → `Boolean`.
 
 ---
 
 ## 4. Operadores
 
-### Aritméticos — são os mesmos símbolos
+### Aritméticos — mesmos símbolos do Portugol
 
-| Operador | Significado | Portugol | Java |
-|---|---|---|---|
-| `+` | soma | igual | igual |
-| `-` | subtração | igual | igual |
-| `*` | multiplicação | igual | igual |
-| `/` | divisão | igual | igual |
-| `%` | resto da divisão | igual | igual |
+| Operador | Significado |
+|---|---|
+| `+` | soma |
+| `-` | subtração |
+| `*` | multiplicação |
+| `/` | divisão |
+| `%` | resto da divisão |
 
-### Relacionais — também são os mesmos símbolos
+> Ao operar dois `Integer` ou dois `Double` com `+`, `-`, `*`, `/`, `%`, o Java converte automaticamente para fazer a conta e devolve o wrapper — na prática, funciona como se fossem números comuns.
+
+### Relacionais — mesmos símbolos
 
 | Operador | Significado |
 |---|---|
@@ -162,7 +142,9 @@ public class Saudacao {
 | `>=` | maior ou igual |
 | `<=` | menor ou igual |
 
-> **Atenção com `String`:** em Java, comparar textos com `==` não funciona de forma confiável. Usa-se `nome.equals("Maria")` em vez de `nome == "Maria"`. Isso não existe no Portugol e é um dos erros mais comuns de quem está migrando.
+> **Atenção com `String`:** comparar textos com `==` não funciona de forma confiável em Java. Usa-se `nome.equals("Maria")` em vez de `nome == "Maria"`. Isso não existe no Portugol e é um dos erros mais comuns de quem está migrando.
+>
+> **Atenção com `Integer`, `Double` e `Boolean`:** por serem classes (não tipos primitivos), comparar com `==` também pode dar resultado inesperado em certos casos. O mais seguro, assim como com `String`, é usar `.equals()` — por exemplo `idade.equals(18)`. Nas listas de exercícios desta unidade os operadores relacionais (`>`, `<`, `>=`, `<=`, `==`) funcionam normalmente para os casos trabalhados; o detalhe do `.equals()` fica registrado aqui para quando o assunto for aprofundado.
 
 ### Lógicos — mesmos símbolos
 
@@ -181,9 +163,9 @@ logico podeEntrar = maiorDeIdade && verdadeiro
 
 **Java:**
 ```java
-int idade = 20;
-boolean maiorDeIdade = idade >= 18;
-boolean podeEntrar = maiorDeIdade && true;
+Integer idade = 20;
+Boolean maiorDeIdade = idade >= 18;
+Boolean podeEntrar = maiorDeIdade && true;
 ```
 
 ---
@@ -245,7 +227,7 @@ para (inteiro i = 1; i <= 10; i++)
 
 Java:
 ```java
-for (int i = 1; i <= 10; i++) {
+for (Integer i = 1; i <= 10; i++) {
     System.out.print(i + " ");
 }
 ```
@@ -264,7 +246,7 @@ enquanto (contador < 5)
 
 Java:
 ```java
-int contador = 0;
+Integer contador = 0;
 while (contador < 5) {
     System.out.print(contador + " ");
     contador++;
@@ -286,7 +268,7 @@ enquanto (contador < 5)
 
 Java:
 ```java
-int contador = 0;
+Integer contador = 0;
 do {
     System.out.print(contador + " ");
     contador++;
@@ -299,10 +281,10 @@ do {
 
 ## 7. Vetores (listas)
 
-| Portugol | Java (array — tradução direta) |
+| Portugol | Java |
 |---|---|
-| `inteiro notas[5]` | `int[] notas = new int[5];` |
-| `inteiro notas[5] = {8,7,9,6,10}` | `int[] notas = {8, 7, 9, 6, 10};` |
+| `inteiro notas[5]` | `Integer[] notas = new Integer[5];` |
+| `inteiro notas[5] = {8,7,9,6,10}` | `Integer[] notas = {8, 7, 9, 6, 10};` |
 
 **Portugol:**
 ```
@@ -322,7 +304,7 @@ para (inteiro i = 0; i < 5; i++)
 
 **Java:**
 ```java
-int[] notas = new int[5];
+Integer[] notas = new Integer[5];
 
 notas[0] = 8;
 notas[1] = 7;
@@ -330,7 +312,7 @@ notas[2] = 9;
 notas[3] = 6;
 notas[4] = 10;
 
-for (int i = 0; i < 5; i++) {
+for (Integer i = 0; i < 5; i++) {
     System.out.print(notas[i] + " ");
 }
 ```
@@ -338,10 +320,8 @@ for (int i = 0; i < 5; i++) {
 Declarando já com valores:
 
 ```java
-int[] notas = {8, 7, 9, 6, 10};
+Integer[] notas = {8, 7, 9, 6, 10};
 ```
-
-> **Sobre a tabela wrapper x primitivo em arrays:** um array de `Integer[]` também existe em Java (`Integer[] notas = new Integer[5];`) e é a tradução literal se quisermos manter "inteiro → Integer" também nos vetores. Mas para arrays de números, `int[]` é sempre a escolha usada na prática — mais simples e mais eficiente. `Integer[]` só é necessário em situações avançadas (ex.: dentro de `ArrayList<Integer>`), fora do escopo desta unidade.
 
 ---
 
@@ -350,11 +330,11 @@ int[] notas = {8, 7, 9, 6, 10};
 | Portugol | Java |
 |---|---|
 | `programa { funcao inicio() {...} }` | `public class Nome { public static void main(String[] args) {...} }` |
-| `inteiro` | `int` (ou `Integer`) |
-| `real` | `double` (ou `Double`) |
+| `inteiro` | `Integer` |
+| `real` | `Double` |
 | `cadeia` | `String` |
-| `caractere` | `char` (ou `Character`) |
-| `logico` | `boolean` (ou `Boolean`) |
+| `caractere` | `Character` |
+| `logico` | `Boolean` |
 | `verdadeiro` / `falso` | `true` / `false` |
 | `const` | `final` |
 | `escreva(...)` | `System.out.print(...)` / `System.out.println(...)` |
@@ -365,9 +345,9 @@ int[] notas = {8, 7, 9, 6, 10};
 | `para` | `for` |
 | `enquanto` | `while` |
 | `faca...enquanto` | `do...while` |
-| `tipo vetor[tamanho]` | `tipo[] vetor = new tipo[tamanho];` |
+| `tipo vetor[tamanho]` | `Tipo[] vetor = new Tipo[tamanho];` |
 | `&&` `\|\|` `!` | iguais em Java |
-| `==` `!=` `>` `<` `>=` `<=` | iguais em Java (exceto comparar `String`, que usa `.equals()`) |
+| `==` `!=` `>` `<` `>=` `<=` | iguais em Java (exceto comparar `String`/wrappers com `==`, ver seção 4) |
 | fim de instrução (nada) | `;` (ponto e vírgula obrigatório) |
 | blocos `{ }` | iguais em Java |
 
@@ -376,8 +356,8 @@ int[] notas = {8, 7, 9, 6, 10};
 ## 9. Diferenças que costumam confundir quem vem do Portugol
 
 1. **Ponto e vírgula (`;`)** ao final de cada instrução — no Portugol não existe, em Java é obrigatório.
-2. **Comparação de texto:** `nome == "Maria"` não funciona como esperado em Java; use `nome.equals("Maria")`.
+2. **Comparação de texto e de wrappers:** `nome == "Maria"` não funciona como esperado em Java; use `nome.equals("Maria")`. O mesmo cuidado vale, em teoria, para `Integer`, `Double` e `Boolean` — aqui usamos `==` nos exemplos porque funciona para os casos simples da unidade, mas `.equals()` é o caminho mais seguro.
 3. **Concatenação de texto:** Portugol junta valores com vírgula no `escreva`; Java usa o operador `+`.
-4. **Java é case-sensitive nos tipos:** `int` (minúsculo) é o tipo primitivo; `Int` não existe — a classe wrapper é `Integer`.
-5. **Toda instrução Java mora dentro de uma classe** — não existe código "solto" fora de `public class { ... }` como no `programa { }` do Portugol.
-6. **Índice de array:** em ambos começa em `0` — isso não muda.
+4. **Toda instrução Java mora dentro de uma classe** — não existe código "solto" fora de `public class { ... }` como no `programa { }` do Portugol.
+5. **Índice de array:** em ambos começa em `0` — isso não muda.
+6. **Nomes das classes wrapper começam com letra maiúscula** (`Integer`, `Double`, `Boolean`, `Character`) — diferente de `inteiro`, `real`, `logico`, `caractere`, que são minúsculos no Portugol.
