@@ -100,9 +100,3 @@ Crie uma lista de 10 posições com os kills de 10 partidas de um jogador. Calcu
 *Conceitos: lista, `para`, acumuladores múltiplos, segunda passagem na lista comparando com a média, `se/senaose/senao`*
 
 ---
-
-## Orientações para o Professor
-
-- Estes desafios pressupõem que o aluno já resolveu a lista anterior (Nível 1 ao 5 básico) — o salto de complexidade está em **combinar mais de um conceito no mesmo problema**, não em introduzir sintaxe nova.
-- Destaques de dificuldade: Desafio 3.3 (contador que reinicia), 4.3 (laços aninhados para detectar duplicata) e 5.5 (duas passagens na mesma lista) costumam ser os pontos onde a turma mais trava — vale reservar um tempo maior de acompanhamento nesses.
-- Sugestão de uso: 5.1 a 5.5 funcionam bem como avaliação prática de fechamento, escolhendo 2 ou 3 por aluno/dupla em vez de aplicar todos.
